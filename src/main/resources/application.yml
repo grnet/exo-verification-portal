@@ -11,16 +11,20 @@ feign:
         loggerLevel: basic
 
 keycloak:
-  auth-server-url: http://localhost:8080/auth
+  auth-server-url: https://auth-testing.exo.grnet.gr/auth
   principal-attribute: preferred_username
   public-client: true
   realm: cwa
   resource: verification-portal
 
 keycloak-pw:
-  reset-url: http://localhost:8080/auth/realms/cwa/account/password
+  reset-url: https://auth-testing.exo.grnet.gr/auth/realms/cwa/account/password
 
 server:
+  use-forward-headers: true
+  tomcat:
+    remote_ip_header: x-forwarded-for
+    protocol_header: x-forwarded-proto
   error:
     whitelabel:
       enabled: false
@@ -59,23 +63,23 @@ management:
         enabled: true
 
 cwa-verification-server:
-  url: http://localhost:8082
+  url: https://v-server-testing.exo.grnet.gr
   ssl:
     enabled: false
     one-way: false
     two-way: false
     hostname-verify: false
     key-store: classpath:keystore.jks
-    key-store-password: changeit
+    key-store-password: iti2020!#
     trust-store: classpath:truststore.jks
-    trust-store-password: changeit
+    trust-store-password: iti2020!#
     
 rateLimiting:
   enabled: true
   seconds: 30
 
 host-header:
-  whitelist: localhost:8081
+  whitelist: localhost:8081,exo.grnet.gr,portal-testing.exo.grnet.gr
 
 pod:
   ip: 127.0.0.1
