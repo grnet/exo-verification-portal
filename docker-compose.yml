@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  cwaverificationportal:
+      image: cwa-verification-portal
+      restart: always
+      ports:
+        - "127.0.0.1:${PORT}:8081"
